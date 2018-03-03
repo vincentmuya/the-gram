@@ -13,5 +13,5 @@ class User(models.Model):
 
 class Image(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    image_image = models.ImageField(upload_to="images/",blanl = True)
-    caption = models.CharField()
+    image_image = models.ImageField(upload_to="images/",blank = True)
+    caption = models.CharField(max_length = 100)
