@@ -11,7 +11,7 @@ class User(models.Model):
     def save_user(self):
         self.save()
 
-class Image(models.Model):
+class Post(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     post = HTMLField()
     image_image = models.ImageField(upload_to="images/",blank = True)
