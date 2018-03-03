@@ -10,3 +10,7 @@ class User(models.Model):
 
     def save_user(self):
         self.save()
+
+class Image(models.Model):
+    image_image = models.ImageField(upload_to="images/",blanl = True)
+    caption = models.CharField()
