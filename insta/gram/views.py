@@ -1,14 +1,22 @@
+from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .forms import NewPostForm
 
 # Create your views here.
-@login_required(login_url='/accounts/register/')
 def index(request):
     return render(request, "index.html")
 
-@login_required(login_url='/new/post')
+@login_required(login_url='/accounts/login')
+def post(request,post_id):
+    try:
+        post = Post.objects.get(id = post_id)
+    except DoesNotExit:
+        raise Http404()
+    return render(request,"post.html", {"post":post})
+
+@login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user = request.user
     if request.method == 'POST':

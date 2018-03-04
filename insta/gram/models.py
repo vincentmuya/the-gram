@@ -1,23 +1,23 @@
 from django.db import models
-from tinymce.models import HTMLField
 from django.contrib.auth.models import  User
+from tinymce.models import HTMLField
 # Create your models here.
-class User(models.Model):
+class Editor(models.Model):
     user_name = models.CharField(max_length = 30)
     email = models.EmailField()
 
     def __str__(self):
         return self.user_name
 
-    def save_user(self):
+    def save_editor(self):
         self.save()
 
 class Post(models.Model):
-    user = models.ForeignKey(User)
+    editor = models.ForeignKey(Editor,null = True)
     post_image = models.ImageField(upload_to="posts/",blank = True, null = True)
     caption = HTMLField()
 
     @classmethod
     def this_post(cls):
-        gram = cls.objects
+        gram = cls.objects()
         return gram
