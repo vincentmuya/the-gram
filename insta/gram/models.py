@@ -15,7 +15,7 @@ class Editor(models.Model):
 class Post(models.Model):
     editor = models.ForeignKey(Editor,null = True)
     post_image = models.ImageField(upload_to="posts/",blank = True, null = True)
-    caption = HTMLField()
+    caption = models.CharField(max_length = 100)
 
     @classmethod
     def this_post(cls):

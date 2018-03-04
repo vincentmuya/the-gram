@@ -1,15 +1,12 @@
 {%extends 'base.html'%} {% load bootstrap3 %} {% block content %} {{ block.super}}
 <!-- Looping through photos   -->
-{% for grams_item in grams %}
+{% for gram_item in gram %}
 <!--Display photos Image images  -->
-<div class="col-md-4">
-  <div class="card" style="width: 20rem;">
-    {%if grams_item.post_image %}
-    <img src="{{grams_item.image_image.url}}" class="img-responsive" alt="Image"> {%endif%}
-  </div>
+<h4> {{ gram_item.editor }} </h5>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+<img src="{{ gram_item.post_image.url}}" class="img-responsive" alt="Image">
 </div>
+<h2> {{ gram_item.caption }} </h2>
 
-{% empty %}
-<h2 class="text-center">There No Photos Items</h2> {% endfor %}
-</div>
+{% endfor %}
 {% endblock %}
