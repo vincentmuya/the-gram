@@ -12,7 +12,11 @@ class User(models.Model):
         self.save()
 
 class Post(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    post = HTMLField()
-    image_image = models.ImageField(upload_to="images/",blank = True)
-    caption = models.CharField(max_length = 100)
+    user = models.ForeignKey(User)
+    post_image = models.ImageField(upload_to="posts/",blank = True, null = True)
+    caption = HTMLField()
+
+    @classmethod
+    def this_post(cls):
+        gram = cls.objects
+        return gram
