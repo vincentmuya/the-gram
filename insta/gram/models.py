@@ -1,5 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
+from django.contrib.auth.models import  User
 # Create your models here.
 class User(models.Model):
     user_name = models.CharField(max_length = 30)

@@ -1,9 +1,10 @@
-from.models import Post
+from django import forms
+from .models import Post
 
 class NewPostForm(forms.ModelForm):
     class Meta:
-        model = Image
+        model = Post
         exclude = ['user']
         widges = {
-        'tags': forms.CheckboxSelectMultiple(),
+            'tags': forms.CheckboxSelectMultiple(),
         }
