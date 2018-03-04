@@ -1,7 +1,15 @@
-{%extends 'base.html'%}
-{% load bootstrap3 %}
-{% block content %}
-{{ block.super}}
+{%extends 'base.html'%} {% load bootstrap3 %} {% block content %} {{ block.super}}
+<!-- Looping through photos   -->
+{% for grams_item in grams %}
+<!--Display photos Image images  -->
+<div class="col-md-4">
+  <div class="card" style="width: 20rem;">
+    {%if grams_item.post_image %}
+    <img src="{{grams_item.image_image.url}}" class="img-responsive" alt="Image"> {%endif%}
+  </div>
+</div>
 
-
+{% empty %}
+<h2 class="text-center">There No Photos Items</h2> {% endfor %}
+</div>
 {% endblock %}

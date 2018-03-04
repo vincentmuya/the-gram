@@ -5,6 +5,5 @@ from .models import Editor,Post
 class PostAdmin(admin.ModelAdmin):
     filter_horizontal =()
 
-
 admin.site.register(Editor)
 admin.site.register(Post,PostAdmin)

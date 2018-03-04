@@ -19,5 +19,5 @@ class Post(models.Model):
 
     @classmethod
     def this_post(cls):
-        gram = cls.objects()
+        gram = cls.objects.all()
         return gram
