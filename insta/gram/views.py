@@ -29,6 +29,6 @@ def new_post(request):
             post.user = current_user
             post.save()
 
-        else:
-         form = NewPostForm()
+    else:
+        form = NewPostForm()
     return render(request, 'new_post.html', {"form": form},)
