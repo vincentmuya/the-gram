@@ -30,5 +30,5 @@ def new_post(request):
             post.save()
 
         else:
-            form = NewPostForm()
-        return render(request, 'new_post.html', {"form": form},)
+         form = NewPostForm()
+    return render(request, 'new_post.html', {"form": form},)

@@ -6,5 +6,5 @@ class NewPostForm(forms.ModelForm):
         model = Post
         exclude = ['user']
         widges = {
-            'tags': forms.CheckboxSelectMultiple(),
+            
         }
