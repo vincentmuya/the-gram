@@ -29,8 +29,8 @@ height: 40px;
 
 .Instagram-card-user-image{
 border-radius: 50%;
-width: 40px;
-height: 40px;
+width: 50px;
+height: 50px;
 vertical-align: middle;
 }
 
@@ -106,7 +106,9 @@ width: 100%;
   <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="Styles.css">
 </head>
-
+<br>
+<br>
+<br>
 <!-- Looping through photos   -->
 {% for gram_item in gram %}
 {% for insta_item in insta %}
@@ -115,12 +117,13 @@ width: 100%;
   <div class="Instagram-card">
     <div class="Instagram-card-header">
       <img src="{{ insta_item.profile_image.url}}"class="Instagram-card-user-image">
-      <a class="Instagram-card-user-name" href=""> {{ gram_item.editor. }} </a>
+      <a class="Instagram-card-user-name" href=""> {{ insta_item.user_name }} </a>
+      <br>
       <div class="Instagram-card-time"> 1 sem </div>
     </div>
 
     <div class="Instagram-card-image">
-      <img src= "{{ gram_item.post_image.url}}" height=325px/>
+      <img src= "{{ gram_item.post_image.url}}"  height=330px/>
     </div>
 
     <div class="Instagram-card-content">

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import  User
+from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 # Create your models here.
 class Editor(models.Model):
@@ -7,6 +7,7 @@ class Editor(models.Model):
     email = models.EmailField()
     profile_image = models.ImageField(upload_to="posts/",blank = True, null = True)
     bio = models.CharField(max_length = 50, null = True)
+    editor = models.ForeignKey(User,null = True)
 
     def __str__(self):
         return self.user_name
@@ -20,7 +21,7 @@ class Editor(models.Model):
         return gram
 
 class Post(models.Model):
-    editor = models.ForeignKey(Editor,null = True)
+    editor = models.ForeignKey(User,null = True)
     post_image = models.ImageField(upload_to="posts/",blank = True, null = True)
     caption = models.CharField(max_length = 100)
 

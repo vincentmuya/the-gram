@@ -1,13 +1,45 @@
 {%extends 'base.html'%} {% load bootstrap3 %}
 {% block content %}
+<head>
+  <style media="screen">
+  .Instagram-card-user-image{
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  vertical-align: middle;
+  }
+  </style>
+</head>
 <br>
 <br>
 <br>
+<br>
+<div class="container">
 
-...
+<div class="row">
 {% for gram_item in gram %}
-<img src="{{ gram_item.profile_image.url}}"class="Instagram-card-user-image">
-<h2>{{ gram_item.editor }}</h2>
-<h2>{{ gram_item.bio }}</h2>
+<div class="col-md-4">
+</div>
+<div class="col-md-8">
+  <img src="{{ gram_item.profile_image.url}}"class="Instagram-card-user-image">
+<h3>{{ gram_item.user_name }}</h3>
+<h3>{{ gram_item.bio }}</h3>
+</div>
+<li>
+  <a href="/accounts/password/change">Change Password</a>
+</li>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-4">
+    {{user.username}}
+    </div>
+    <div class="col-md-8">
+{%for img in image %}
+  <img src="{{img.post_image.url}}" alt="" height=150px>
+  </div>
+</div>
+{% endfor %}
+</div>
 {% endfor %}
 {% endblock %}

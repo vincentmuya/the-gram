@@ -4,8 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .forms import NewPostForm
 from .models import Post,Editor
+from django.contrib.auth.models import User
 
 # Create your views here.
+@login_required(login_url='/accounts/login')
 def index(request):
     gram = Post.this_post()
     insta = Editor.this_editor()
@@ -33,7 +35,10 @@ def new_post(request):
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form},)
 
-@login_required(login_url='/accounts/login')
 def profile(request):
+    user = request.user
     gram = Editor.this_editor()
-    return render(request, "profile.html", {"gram":gram})
+    image= Post.this_post()
+    return render(request, "profile.html", {"gram":gram,
+                                            "user":user,
+                                            "image":image,})
