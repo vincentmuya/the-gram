@@ -36,6 +36,9 @@ def new_post(request):
     return render(request, 'new_post.html', {"form": form},)
 
 def profile(request):
+    return render(request,'all-scoots/index.html')
+    
+def profile(request):
     user = request.user
     gram = Editor.this_editor()
     image= Post.this_post()
