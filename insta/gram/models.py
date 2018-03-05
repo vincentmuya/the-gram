@@ -6,12 +6,18 @@ class Editor(models.Model):
     user_name = models.CharField(max_length = 30)
     email = models.EmailField()
     profile_image = models.ImageField(upload_to="posts/",blank = True, null = True)
+    bio = models.CharField(max_length = 50, null = True)
 
     def __str__(self):
         return self.user_name
 
     def save_editor(self):
         self.save()
+
+    @classmethod
+    def this_editor(cls):
+        gram = cls.objects.all()
+        return gram
 
 class Post(models.Model):
     editor = models.ForeignKey(Editor,null = True)

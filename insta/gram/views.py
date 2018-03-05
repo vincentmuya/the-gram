@@ -3,13 +3,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .forms import NewPostForm
-from .models import Post
+from .models import Post,Editor
 
 # Create your views here.
 def index(request):
     gram = Post.this_post()
-
-    return render(request, "index.html", {"gram":gram})
+    insta = Editor.this_editor()
+    return render(request, "index.html", {"gram":gram, "insta":insta})
 
 @login_required(login_url='/accounts/login')
 def post(request,post_id):
@@ -35,4 +35,5 @@ def new_post(request):
 
 @login_required(login_url='/accounts/login')
 def profile(request):
-    return render(request, "profile.html")
+    gram = Editor.this_editor()
+    return render(request, "profile.html", {"gram":gram})

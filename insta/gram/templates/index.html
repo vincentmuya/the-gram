@@ -109,11 +109,12 @@ width: 100%;
 
 <!-- Looping through photos   -->
 {% for gram_item in gram %}
+{% for insta_item in insta %}
 <!--Display photos Image images  -->
 
   <div class="Instagram-card">
     <div class="Instagram-card-header">
-      <img src="{{ gram_item.profile_image.url}}"class="Instagram-card-user-image">
+      <img src="{{ insta_item.profile_image.url}}"class="Instagram-card-user-image">
       <a class="Instagram-card-user-name" href=""> {{ gram_item.editor. }} </a>
       <div class="Instagram-card-time"> 1 sem </div>
     </div>
@@ -141,5 +142,6 @@ width: 100%;
   </div>
 
 
+  {% endfor %}
   {% endfor %}
   {% endblock %}
