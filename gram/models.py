@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from django.db.models.signals import post_save
+
 # Create your models here.
 class Editor(models.Model):
     user_name = models.CharField(max_length = 30)
@@ -29,3 +31,9 @@ class Post(models.Model):
     def this_post(cls):
         gram = cls.objects.all()
         return gram
+
+def Create_profile(sender, **kwargs):
+    if kwargs['created']:
+        user_profile = Profile.objects.create(user=kwargs['instance'])
+
+post_save.connect(Create_profile,sender=User)

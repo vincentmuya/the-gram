@@ -37,7 +37,7 @@ def new_post(request):
 
 def profile(request):
     return render(request,'all-scoots/index.html')
-    
+
 def profile(request):
     user = request.user
     gram = Editor.this_editor()
