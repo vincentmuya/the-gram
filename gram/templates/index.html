@@ -117,7 +117,7 @@ width: 100%;
   <div class="Instagram-card">
     <div class="Instagram-card-header">
       <img src="{{ insta_item.profile_image.url}}"class="Instagram-card-user-image">
-      <a class="Instagram-card-user-name" href=""> {{ insta_item.user_name }} </a>
+      <a class="Instagram-card-user-name" href="/profile"> {{ insta_item.user_name }} </a>
       <br>
       <div class="Instagram-card-time"> 1 sem </div>
     </div>
@@ -129,7 +129,7 @@ width: 100%;
     <div class="Instagram-card-content">
       <p><a class="Instagram-card-content-user">
       <href="">{{ gram_item.editor }} </a>
-     {{ gram_item.caption }}
+     {{ gram_item.caption |safe }}
       <!-- <br><a class="user-comment" href="">Muya</a> NO WAY! WAY TO GO ROGER MY BOI</br>
       <br><a class="user-comment" href="">Gichuhi</a> ROGER = BEST NINTENDO FAN.</br>
       <br><a class="user-comment" href="">Another1</a> I JUST TRIED IT OUT TODAY ITS AMAZING</br> -->

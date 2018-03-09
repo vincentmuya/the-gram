@@ -2,7 +2,7 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-from .forms import NewPostForm
+from .forms import NewPostForm,EditprofileForms
 from .models import Post,Editor
 from django.contrib.auth.models import User
 
@@ -45,3 +45,16 @@ def profile(request):
     return render(request, "profile.html", {"gram":gram,
                                             "user":user,
                                             "image":image,})
+
+def edit_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = EditprofileForms(request.POST, request.FILES)
+        if form.is_valid():
+            editor = form.save(commit=False)
+            editor.user = current_user
+            editor.save()
+
+    else:
+        form = EditprofileForms()
+    return render(request, 'edit_profile.html', {"form": form},)

@@ -8,7 +8,8 @@ urlpatterns=[
     url(r'^$',views.index,name ='index'),
     url(r'^post/(\d+)',views.post,name ='post'),
     url(r'^new/post/$', views.new_post, name='new-post'),
-    url(r'^profile/$', views.profile, name ='profile')
+    url(r'^profile/$', views.profile, name ='profile'),
+    url(r'^edit/profile/$', views.edit_profile, name='edit-profile'),
 
 ]
 
