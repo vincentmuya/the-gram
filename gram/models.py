@@ -23,8 +23,18 @@ class Editor(models.Model):
         return gram
 class Comments(models.Model):
     comment = models.CharField(max_length = 500)
-    user = models.ForeignKey(User)
+    editor = models.ForeignKey(User,null = True)
 
+    def __str__(self):
+        return self.comment
+
+    def save_comment(self):
+        self.save
+
+    @classmethod
+    def this_comment(cls):
+        comment = cls.objects.all()
+        return comment
 
 
 class Post(models.Model):

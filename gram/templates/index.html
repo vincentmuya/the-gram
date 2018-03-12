@@ -112,6 +112,8 @@ width: 100%;
 <!-- Looping through photos   -->
 {% for gram_item in gram %}
 {% for insta_item in insta %}
+{% for comment_item in comment %}
+
 <!--Display photos Image images  -->
 
   <div class="Instagram-card">
@@ -128,8 +130,10 @@ width: 100%;
 
     <div class="Instagram-card-content">
       <p><a class="Instagram-card-content-user">
-      <href="">{{ gram_item.editor }} </a>
+      <href="">{{ insta_item.user_name }} </a>
      {{ gram_item.caption |safe }}
+     <br><a class="user-comment" href="">{{ insta_item.user_name }}</a>{{comment_item.comment}}</br>
+
       <!-- <br><a class="user-comment" href="">Muya</a> NO WAY! WAY TO GO ROGER MY BOI</br>
       <br><a class="user-comment" href="">Gichuhi</a> ROGER = BEST NINTENDO FAN.</br>
       <br><a class="user-comment" href="">Another1</a> I JUST TRIED IT OUT TODAY ITS AMAZING</br> -->
@@ -144,7 +148,7 @@ width: 100%;
 
   </div>
 
-
+  {% endfor %}
   {% endfor %}
   {% endfor %}
   {% endblock %}
