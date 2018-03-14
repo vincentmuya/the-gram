@@ -15,7 +15,12 @@
 <br>
 <br>
 <div class="container">
-
+  <form method="post">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">Save changes</button>
+  </form>
 <div class="row">
 {% for gram_item in gram %}
 <div class="col-md-4">
