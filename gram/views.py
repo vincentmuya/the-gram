@@ -54,7 +54,7 @@ def profile(request):
 
 def profile(request):
     user = request.user
-    gram = Editor.this_editor()
+    gram = Profile.this_profile()
     image= Post.this_post()
     return render(request, "profile.html", {"gram":gram,
                                             "user":user,
@@ -63,14 +63,14 @@ def profile(request):
 def edit_profile(request):
     current_user = request.user
     if request.method == 'POST':
-        form = EditprofileForms(request.POST, request.FILES)
+        form = ProfileForms(request.POST, request.FILES)
         if form.is_valid():
-            editor = form.save(commit=False)
-            editor.user = current_user
-            editor.save()
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
 
     else:
-        form = EditprofileForms()
+        form = ProfileForms()
     return render(request, 'edit_profile.html', {"form": form},)
 
 def comment(request):

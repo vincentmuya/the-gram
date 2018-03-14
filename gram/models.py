@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null = True)
     email = models.EmailField()
     profile_image = models.ImageField(upload_to="posts/",blank = True, null = True)
     bio = models.TextField(max_length=500, blank=True)
@@ -22,7 +22,7 @@ class Profile(models.Model):
         return gram
 class Comments(models.Model):
     comment = models.CharField(max_length = 500)
-    editor = models.ForeignKey(User,null = True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null = True)
 
     def __str__(self):
         return self.comment
@@ -37,7 +37,7 @@ class Comments(models.Model):
 
 
 class Post(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null = True)
     post_image = models.ImageField(upload_to="posts/",blank = True, null = True)
     caption = HTMLField()
 
