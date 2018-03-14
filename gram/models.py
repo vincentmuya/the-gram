@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from tinymce.models import HTMLField
 from django.db.models.signals import post_save
 
@@ -10,16 +12,20 @@ class Profile(models.Model):
     profile_image = models.ImageField(upload_to="posts/",blank = True, null = True)
     bio = models.TextField(max_length=500, blank=True)
 
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
     def __str__(self):
         return self.user
 
     def save_profile(self):
         self.save()
-
-    @classmethod
-    def this_profile(cls):
-        gram = cls.objects.all()
-        return gram
 class Comments(models.Model):
     comment = models.CharField(max_length = 500)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null = True)

@@ -2,7 +2,7 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-from .forms import NewPostForm,ProfileForms,CommentForm
+from .forms import NewPostForm,ProfileForm,CommentForm
 from .models import Post,Profile,Comments
 from django.contrib.auth.models import User
 
