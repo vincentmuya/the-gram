@@ -52,8 +52,8 @@ class Post(models.Model):
         gram = cls.objects.all()
         return gram
 
-    def Create_profile(sender, **kwargs):
-        if kwargs['created']:
-            user_profile = Profile.objects.create(user=kwargs['instance'])
+def Create_profile(sender, **kwargs):
+    if kwargs['created']:
+        user_profile = Profile.objects.create(user=kwargs['instance'])
 
-    post_save.connect(Create_profile,sender=User)
+post_save.connect(Create_profile,sender=User)

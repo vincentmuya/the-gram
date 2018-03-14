@@ -2,17 +2,17 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-from .forms import NewPostForm,ProfileForm,CommentForm
+from .forms import NewPostForm,ProfileForm,CommentForm,UserForm
 from .models import Post,Profile,Comments
 from django.contrib.auth.models import User
+from django.db import transaction
 
 # Create your views here.
 @login_required(login_url='/accounts/login')
 def index(request):
     gram = Post.this_post()
-    insta = Profile.this_profile()
     comment = Comments.this_comment()
-    return render(request, "index.html", {"gram":gram, "insta":insta, "comment":comment})
+    return render(request, "index.html", {"gram":gram, "comment":comment})
 
 def comment(request):
     current_user = request.user
@@ -49,9 +49,6 @@ def new_post(request):
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form},)
 
-def profile(request):
-    return render(request,'all-scoots/index.html')
-
 @login_required
 @transaction.atomic
 def update_profile(request):
@@ -68,7 +65,7 @@ def update_profile(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'profiles/profile.html', {
+    return render(request, 'profile.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })
