@@ -2,15 +2,15 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-from .forms import NewPostForm,EditprofileForms,CommentForm
-from .models import Post,Editor,Comments
+from .forms import NewPostForm,ProfileForms,CommentForm
+from .models import Post,Profile,Comments
 from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url='/accounts/login')
 def index(request):
     gram = Post.this_post()
-    insta = Editor.this_editor()
+    insta = Profile.this_profile()
     comment = Comments.this_comment()
     return render(request, "index.html", {"gram":gram, "insta":insta, "comment":comment})
 

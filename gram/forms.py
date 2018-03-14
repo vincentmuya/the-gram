@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, Textarea
-from .models import Post,Editor,Comments
+from .models import Post,Profile,Comments
 
 class NewPostForm(forms.ModelForm):
     class Meta:
@@ -10,10 +10,10 @@ class NewPostForm(forms.ModelForm):
 
         }
 
-class EditprofileForms(forms.ModelForm):
+class ProfileForms(forms.ModelForm):
     class Meta:
-        model = Editor
-        exclude = ['editor']
+        model = Profile
+        exclude = ['user']
         widges = {
 
         }
