@@ -52,26 +52,26 @@ def new_post(request):
 def profile(request):
     return render(request,'all-scoots/index.html')
 
-def profile(request):
-    user = request.user
-    gram = Profile.this_profile()
-    image= Post.this_post()
-    return render(request, "profile.html", {"gram":gram,
-                                            "user":user,
-                                            "image":image,})
-
-def edit_profile(request):
-    current_user = request.user
+@login_required
+@transaction.atomic
+def update_profile(request):
     if request.method == 'POST':
-        form = ProfileForms(request.POST, request.FILES)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = current_user
-            profile.save()
-
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('settings:profile')
+        else:
+            messages.error(request, _('Please correct the error below.'))
     else:
-        form = ProfileForms()
-    return render(request, 'edit_profile.html', {"form": form},)
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profiles/profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
 
 def comment(request):
     return render(request, 'index.html')
